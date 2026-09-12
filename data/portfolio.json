@@ -1,0 +1,264 @@
+[
+  {
+    "sector": "Financial",
+    "stocks": [
+      {
+        "no": 1,
+        "name": "HDFC Bank",
+        "purchasePrice": 1490,
+        "quantity": 50,
+        "exchange": "NSE",
+        "symbol": "HDFCBANK"
+      },
+      {
+        "no": 2,
+        "name": "Bajaj Finance",
+        "purchasePrice": 6466,
+        "quantity": 15,
+        "exchange": "NSE",
+        "symbol": "BAJFINANCE"
+      },
+      {
+        "no": 3,
+        "name": "ICICI Bank",
+        "purchasePrice": 780,
+        "quantity": 84,
+        "exchange": "BSE",
+        "symbol": "532174"
+      },
+      {
+        "no": 4,
+        "name": "Bajaj Housing",
+        "purchasePrice": 130,
+        "quantity": 504,
+        "exchange": "BSE",
+        "symbol": "544252"
+      },
+      {
+        "no": 5,
+        "name": "Savani Financials",
+        "purchasePrice": 24,
+        "quantity": 1080,
+        "exchange": "BSE",
+        "symbol": "511577"
+      }
+    ]
+  },
+  {
+    "sector": "Tech",
+    "stocks": [
+      {
+        "no": 1,
+        "name": "Affle India",
+        "purchasePrice": 1151,
+        "quantity": 50,
+        "exchange": "NSE",
+        "symbol": "AFFLE"
+      },
+      {
+        "no": 2,
+        "name": "LTI Mindtree",
+        "purchasePrice": 4775,
+        "quantity": 16,
+        "exchange": "NSE",
+        "symbol": "LTIM"
+      },
+      {
+        "no": 3,
+        "name": "KPIT Tech",
+        "purchasePrice": 672,
+        "quantity": 61,
+        "exchange": "BSE",
+        "symbol": "542651"
+      },
+      {
+        "no": 4,
+        "name": "Tata Tech",
+        "purchasePrice": 1072,
+        "quantity": 63,
+        "exchange": "BSE",
+        "symbol": "544028"
+      },
+      {
+        "no": 5,
+        "name": "BLS E-Services",
+        "purchasePrice": 232,
+        "quantity": 191,
+        "exchange": "BSE",
+        "symbol": "544107"
+      },
+      {
+        "no": 6,
+        "name": "Tanla",
+        "purchasePrice": 1134,
+        "quantity": 45,
+        "exchange": "BSE",
+        "symbol": "532790"
+      },
+      {
+        "no": 7,
+        "name": "Infosys",
+        "purchasePrice": 1647,
+        "quantity": 36,
+        "exchange": "BSE",
+        "symbol": "500209"
+      },
+      {
+        "no": 8,
+        "name": "Happiest Mind",
+        "purchasePrice": 1103,
+        "quantity": 45,
+        "exchange": "BSE",
+        "symbol": "543237"
+      },
+      {
+        "no": 9,
+        "name": "Easemytrip",
+        "purchasePrice": 20,
+        "quantity": 1332,
+        "exchange": "BSE",
+        "symbol": "543272"
+      }
+    ]
+  },
+  {
+    "sector": "Consumer",
+    "stocks": [
+      {
+        "no": 1,
+        "name": "Dmart",
+        "purchasePrice": 3777,
+        "quantity": 27,
+        "exchange": "NSE",
+        "symbol": "DMART"
+      },
+      {
+        "no": 2,
+        "name": "Tata Consumer",
+        "purchasePrice": 845,
+        "quantity": 90,
+        "exchange": "BSE",
+        "symbol": "532540"
+      },
+      {
+        "no": 3,
+        "name": "Pidilite",
+        "purchasePrice": 2376,
+        "quantity": 36,
+        "exchange": "BSE",
+        "symbol": "500331"
+      }
+    ]
+  },
+  {
+    "sector": "Power",
+    "stocks": [
+      {
+        "no": 1,
+        "name": "Tata Power",
+        "purchasePrice": 224,
+        "quantity": 225,
+        "exchange": "BSE",
+        "symbol": "500400"
+      },
+      {
+        "no": 2,
+        "name": "KPI Green",
+        "purchasePrice": 875,
+        "quantity": 50,
+        "exchange": "BSE",
+        "symbol": "542323"
+      },
+      {
+        "no": 3,
+        "name": "Suzlon",
+        "purchasePrice": 44,
+        "quantity": 450,
+        "exchange": "BSE",
+        "symbol": "532667"
+      },
+      {
+        "no": 4,
+        "name": "Gensol",
+        "purchasePrice": 998,
+        "quantity": 45,
+        "exchange": "BSE",
+        "symbol": "542851"
+      }
+    ]
+  },
+  {
+    "sector": "Pipe",
+    "stocks": [
+      {
+        "no": 1,
+        "name": "Hariom Pipes",
+        "purchasePrice": 580,
+        "quantity": 60,
+        "exchange": "BSE",
+        "symbol": "543517"
+      },
+      {
+        "no": 2,
+        "name": "Astral",
+        "purchasePrice": 1517,
+        "quantity": 56,
+        "exchange": "NSE",
+        "symbol": "ASTRAL"
+      },
+      {
+        "no": 3,
+        "name": "Polycab",
+        "purchasePrice": 2818,
+        "quantity": 28,
+        "exchange": "BSE",
+        "symbol": "542652"
+      }
+    ]
+  },
+  {
+    "sector": "Others",
+    "stocks": [
+      {
+        "no": 1,
+        "name": "Clean Science",
+        "purchasePrice": 1610,
+        "quantity": 32,
+        "exchange": "BSE",
+        "symbol": "543318"
+      },
+      {
+        "no": 2,
+        "name": "Deepak Nitrite",
+        "purchasePrice": 2248,
+        "quantity": 27,
+        "exchange": "BSE",
+        "symbol": "506401"
+      },
+      {
+        "no": 3,
+        "name": "Fine Organic",
+        "purchasePrice": 4284,
+        "quantity": 16,
+        "exchange": "BSE",
+        "symbol": "541557"
+      },
+      {
+        "no": 4,
+        "name": "Gravita",
+        "purchasePrice": 2037,
+        "quantity": 8,
+        "exchange": "BSE",
+        "symbol": "533282"
+      },
+      {
+        "no": 5,
+        "name": "SBI Life",
+        "purchasePrice": 1197,
+        "quantity": 49,
+        "exchange": "BSE",
+        "symbol": "540719"
+      }
+    ]
+  }
+]
