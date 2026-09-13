@@ -72,29 +72,29 @@ A full-stack Indian stock portfolio web application built with **Next.js (React)
 ### 1. Portfolio Overview & Top Summary Cards
 > Displays total portfolio investment, current value, overall gain/loss, and live market indicator.
 
-![Portfolio Overview](public/screenshots/image-6.png)
+![Portfolio Overview](image.png)
 
-![Summary Cards](public/screenshots/image.png)
+![Summary Cards](image-1.png)
 
 ### 2. Sector Grouping & Tabular Stock Breakdown
 > Stocks grouped by sector with all 11 required columns (Buy Price, Qty, Investment, Weight %, CMP, Present Value, Gain/Loss, P/E, EPS) and sector-level summary totals.
 
 #### Financial Sector:
-![Financial Sector](public/screenshots/image-1.png)
+![Financial Sector](image-2.png)
 
 #### Tech Sector:
-![Tech Sector](public/screenshots/image-2.png)
+![Tech Sector](image-3.png)
 
 #### Consumer & Power Sectors:
-![Consumer & Power Sectors](public/screenshots/image-3.png)
+![Consumer & Power Sectors](image-4.png)
 
 #### Pipe & Other Sectors:
-![Pipe & Others Sectors](public/screenshots/image-4.png)
+![Pipe & Others Sectors](image-5.png)
 
 ### 3. Dynamic 15-Second Auto-Refresh & Status Indicator
 > Demonstrates the live 15-second countdown timer, market status, and manual refresh button.
 
-![Dynamic Refresh Header](public/screenshots/image-5.png)
+![Dynamic Refresh Header](image-6.png)
 
 ---
 
