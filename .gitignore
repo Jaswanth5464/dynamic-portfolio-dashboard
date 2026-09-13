@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# technical document (excluded from public repo)
+TECHNICAL_DOCUMENT.md

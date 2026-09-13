@@ -4,7 +4,7 @@
 //
 // Google Finance URL format:
 //   https://www.google.com/finance/quote/SYMBOL:NSE
-//   https://www.google.com/finance/quote/SYMBOL:BSE
+//   https://www.google.com/finance/quote/SYMBOL:BOM  (BSE uses BOM on Google)
 //
 // IMPORTANT: This is an unofficial scraping approach. Google Finance
 // does not provide a public API. The HTML structure may change at any time.
@@ -37,18 +37,20 @@ function buildGoogleFinanceUrl(symbol: string, exchange: string): string {
  * Returns null if parsing fails.
  */
 function parseNumber(text: string): number | null {
-  // Remove currency symbols, commas, and whitespace
-  const cleaned = text.replace(/[₹,\s]/g, "").trim();
+  // Remove currency symbols (₹, $), commas, and whitespace
+  const cleaned = text.replace(/[₹$,\s]/g, "").trim();
   const num = parseFloat(cleaned);
   return isNaN(num) ? null : num;
 }
 
 /**
- * Extract P/E ratio and Latest Earnings from Google Finance HTML.
+ * Extract P/E ratio and Latest Earnings (EPS) from Google Finance HTML.
  *
- * Google Finance shows key stats in a table. We look for the text labels
- * "P/E ratio" and "EPS" in the HTML and extract the adjacent values.
+ * Google Finance HTML structure (verified live, September 2025):
+ * - P/E ratio: <div ...>P/E ratio</div><div class="dO6ijd">13.84</div>
+ * - EPS:       <div ...>EPS</div><div class="dO6ijd">₹51.21</div>
  *
+ * Both values use the same "dO6ijd" class for their value div.
  * This is a best-effort scrape — if Google changes its HTML, we return null.
  */
 function parseGoogleFinanceHtml(
@@ -58,43 +60,21 @@ function parseGoogleFinanceHtml(
   let latestEarnings: number | null = null;
 
   try {
-    // Google Finance key stats appear as:
-    // <div class="gyFHrc"><div class="mfs7Fc">P/E ratio</div><div class="P6K39c">18.69</div></div>
-    // We use simple regex to find P/E ratio and EPS values
-
-    // Match P/E ratio
+    // P/E ratio pattern: "P/E ratio</div><div class="dO6ijd">VALUE</div>"
     const peMatch = html.match(
-      /P\/E ratio[\s\S]*?class="[^"]*P6K39c[^"]*"[^>]*>([\d.,]+)<\/div>/
+      /P\/E ratio<\/div><div[^>]*>([\d.,]+)<\/div>/
     );
     if (peMatch) {
       peRatio = parseNumber(peMatch[1]);
     }
 
-    // Match EPS (earnings per share = "latest earnings")
+    // EPS pattern: "EPS</div><div class="dO6ijd">₹VALUE</div>"
+    // The value may include a ₹ or $ currency prefix.
     const epsMatch = html.match(
-      /EPS[\s\S]*?class="[^"]*P6K39c[^"]*"[^>]*>([\d.,]+)<\/div>/
+      /\bEPS<\/div><div[^>]*>[₹$]?([\d.,]+)<\/div>/
     );
     if (epsMatch) {
       latestEarnings = parseNumber(epsMatch[1]);
-    }
-
-    // Alternative pattern: look for labeled data table entries
-    if (peRatio === null) {
-      const altPeMatch = html.match(
-        /P\/E ratio[^<]*<\/[^>]+>\s*<[^>]+>\s*([\d.]+)/
-      );
-      if (altPeMatch) {
-        peRatio = parseNumber(altPeMatch[1]);
-      }
-    }
-
-    if (latestEarnings === null) {
-      const altEpsMatch = html.match(
-        /EPS[^<]*<\/[^>]+>\s*<[^>]+>\s*([\d.]+)/
-      );
-      if (altEpsMatch) {
-        latestEarnings = parseNumber(altEpsMatch[1]);
-      }
     }
   } catch (err) {
     console.error("Error parsing Google Finance HTML:", err);

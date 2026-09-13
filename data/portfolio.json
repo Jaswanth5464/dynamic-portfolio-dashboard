@@ -23,16 +23,16 @@
         "name": "ICICI Bank",
         "purchasePrice": 780,
         "quantity": 84,
-        "exchange": "BSE",
-        "symbol": "532174"
+        "exchange": "NSE",
+        "symbol": "ICICIBANK"
       },
       {
         "no": 4,
         "name": "Bajaj Housing",
         "purchasePrice": 130,
         "quantity": 504,
-        "exchange": "BSE",
-        "symbol": "544252"
+        "exchange": "NSE",
+        "symbol": "BAJAJHFL"
       },
       {
         "no": 5,
@@ -68,56 +68,56 @@
         "name": "KPIT Tech",
         "purchasePrice": 672,
         "quantity": 61,
-        "exchange": "BSE",
-        "symbol": "542651"
+        "exchange": "NSE",
+        "symbol": "KPITTECH"
       },
       {
         "no": 4,
         "name": "Tata Tech",
         "purchasePrice": 1072,
         "quantity": 63,
-        "exchange": "BSE",
-        "symbol": "544028"
+        "exchange": "NSE",
+        "symbol": "TATATECH"
       },
       {
         "no": 5,
         "name": "BLS E-Services",
         "purchasePrice": 232,
         "quantity": 191,
-        "exchange": "BSE",
-        "symbol": "544107"
+        "exchange": "NSE",
+        "symbol": "BLSE"
       },
       {
         "no": 6,
         "name": "Tanla",
         "purchasePrice": 1134,
         "quantity": 45,
-        "exchange": "BSE",
-        "symbol": "532790"
+        "exchange": "NSE",
+        "symbol": "TANLA"
       },
       {
         "no": 7,
         "name": "Infosys",
         "purchasePrice": 1647,
         "quantity": 36,
-        "exchange": "BSE",
-        "symbol": "500209"
+        "exchange": "NSE",
+        "symbol": "INFY"
       },
       {
         "no": 8,
         "name": "Happiest Mind",
         "purchasePrice": 1103,
         "quantity": 45,
-        "exchange": "BSE",
-        "symbol": "543237"
+        "exchange": "NSE",
+        "symbol": "HAPPSTMNDS"
       },
       {
         "no": 9,
         "name": "Easemytrip",
         "purchasePrice": 20,
         "quantity": 1332,
-        "exchange": "BSE",
-        "symbol": "543272"
+        "exchange": "NSE",
+        "symbol": "EASEMYTRIP"
       }
     ]
   },
@@ -137,16 +137,16 @@
         "name": "Tata Consumer",
         "purchasePrice": 845,
         "quantity": 90,
-        "exchange": "BSE",
-        "symbol": "532540"
+        "exchange": "NSE",
+        "symbol": "TATACONSUM"
       },
       {
         "no": 3,
         "name": "Pidilite",
         "purchasePrice": 2376,
         "quantity": 36,
-        "exchange": "BSE",
-        "symbol": "500331"
+        "exchange": "NSE",
+        "symbol": "PIDILITIND"
       }
     ]
   },
@@ -158,32 +158,32 @@
         "name": "Tata Power",
         "purchasePrice": 224,
         "quantity": 225,
-        "exchange": "BSE",
-        "symbol": "500400"
+        "exchange": "NSE",
+        "symbol": "TATAPOWER"
       },
       {
         "no": 2,
         "name": "KPI Green",
         "purchasePrice": 875,
         "quantity": 50,
-        "exchange": "BSE",
-        "symbol": "542323"
+        "exchange": "NSE",
+        "symbol": "KPIGREEN"
       },
       {
         "no": 3,
         "name": "Suzlon",
         "purchasePrice": 44,
         "quantity": 450,
-        "exchange": "BSE",
-        "symbol": "532667"
+        "exchange": "NSE",
+        "symbol": "SUZLON"
       },
       {
         "no": 4,
         "name": "Gensol",
         "purchasePrice": 998,
         "quantity": 45,
-        "exchange": "BSE",
-        "symbol": "542851"
+        "exchange": "NSE",
+        "symbol": "GENSOL"
       }
     ]
   },
@@ -195,8 +195,8 @@
         "name": "Hariom Pipes",
         "purchasePrice": 580,
         "quantity": 60,
-        "exchange": "BSE",
-        "symbol": "543517"
+        "exchange": "NSE",
+        "symbol": "HARIOMPIPE"
       },
       {
         "no": 2,
@@ -211,8 +211,8 @@
         "name": "Polycab",
         "purchasePrice": 2818,
         "quantity": 28,
-        "exchange": "BSE",
-        "symbol": "542652"
+        "exchange": "NSE",
+        "symbol": "POLYCAB"
       }
     ]
   },
@@ -224,40 +224,40 @@
         "name": "Clean Science",
         "purchasePrice": 1610,
         "quantity": 32,
-        "exchange": "BSE",
-        "symbol": "543318"
+        "exchange": "NSE",
+        "symbol": "CLEAN"
       },
       {
         "no": 2,
         "name": "Deepak Nitrite",
         "purchasePrice": 2248,
         "quantity": 27,
-        "exchange": "BSE",
-        "symbol": "506401"
+        "exchange": "NSE",
+        "symbol": "DEEPAKNTR"
       },
       {
         "no": 3,
         "name": "Fine Organic",
         "purchasePrice": 4284,
         "quantity": 16,
-        "exchange": "BSE",
-        "symbol": "541557"
+        "exchange": "NSE",
+        "symbol": "FINEORG"
       },
       {
         "no": 4,
         "name": "Gravita",
         "purchasePrice": 2037,
         "quantity": 8,
-        "exchange": "BSE",
-        "symbol": "533282"
+        "exchange": "NSE",
+        "symbol": "GRAVITA"
       },
       {
         "no": 5,
         "name": "SBI Life",
         "purchasePrice": 1197,
         "quantity": 49,
-        "exchange": "BSE",
-        "symbol": "540719"
+        "exchange": "NSE",
+        "symbol": "SBILIFE"
       }
     ]
   }

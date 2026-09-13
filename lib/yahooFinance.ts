@@ -9,14 +9,20 @@
 // Cache: We cache results for CACHE_TTL_MS milliseconds so that
 // refreshes every 15s don't hammer Yahoo Finance.
 
-import yahooFinance from "yahoo-finance2";
+import YahooFinanceClass from "yahoo-finance2";
+
+// Create a single instance for the module (v4+ requires new YahooFinance())
+const yahooFinance = new YahooFinanceClass({
+  suppressNotices: ["yahooSurvey"],
+});
 
 // Cache lives in-memory on the server. It resets when the server restarts.
 const cache: Map<string, { price: number | null; fetchedAt: number }> =
   new Map();
 
-// Cache responses for 60 seconds (4 refresh cycles × 15s each)
-const CACHE_TTL_MS = 60 * 1000;
+// Cache responses for 10 seconds so that every 15-second interval fetches fresh live CMP from Yahoo Finance,
+// while still preventing duplicate simultaneous calls within the same cycle.
+const CACHE_TTL_MS = 10 * 1000;
 
 /**
  * Build the Yahoo Finance symbol from NSE/BSE data.
