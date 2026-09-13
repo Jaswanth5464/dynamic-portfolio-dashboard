@@ -22,10 +22,16 @@ A full-stack Indian stock portfolio web application built with **Next.js (React)
 |                 ⚙️ NEXT.JS BACKEND (Node.js API)                  |
 |                 File: app/api/portfolio/route.ts                  |
 |                                                                   |
-|  1. Reads static holdings from: data/portfolio.json               |
-|  2. Checks Server-Side In-Memory Cache:                           |
-|     - CMP Cache: 10-second TTL                                    |
-|     - P/E & EPS Cache: 5-minute TTL                               |
+|   1. Reads static holdings from: data/portfolio.json              |
+|   2. Coordinates parallel fetching and data aggregation           |
++-------------------------------------------------------------------+
+                                  │
+                                  ▼
++-------------------------------------------------------------------+
+|             📦 IN-MEMORY SERVER CACHE (Node.js RAM)               |
+|                                                                   |
+|   • CMP Cache: 10-second TTL (Yahoo Finance prices)               |
+|   • Fundamentals Cache: 5-minute TTL (P/E Ratio & EPS)            |
 +-------------------------------------------------------------------+
        │                                                     │
        │ IF NOT EXPIRED (Cache Hit)                          │ IF EXPIRED (Cache Miss)
