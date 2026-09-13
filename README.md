@@ -27,20 +27,22 @@ A full-stack Indian stock portfolio web application built with **Next.js (React)
 |     - CMP Cache: 10-second TTL                                    |
 |     - P/E & EPS Cache: 5-minute TTL                               |
 +-------------------------------------------------------------------+
-                 │                                   │
-                 │ If cache expired                  │ If cache expired
-                 ▼                                   ▼
-+---------------------------------+ +-------------------------------+
-|     📈 YAHOO FINANCE API        | |      🌐 GOOGLE FINANCE        |
-|   (via yahoo-finance2 library)  | |   (via HTML Page Scraping)    |
-|   Fetches:                      | |   Scrapes:                    |
-|   - Current Market Price (CMP)  | |   - P/E Ratio                 |
-|     (e.g., HDFCBANK.NS)         | |   - Latest Earnings (EPS)     |
-+---------------------------------+ +-------------------------------+
-                 │                                   │
-                 └─────────────────┬─────────────────┘
-                                   │
-                                   ▼
+       │                                                     │
+       │ IF NOT EXPIRED (Cache Hit)                          │ IF EXPIRED (Cache Miss)
+       │ Reuses prices from memory RAM (<1ms)                │ Calls external sources
+       │                                                     ▼
+       │                                    +---------------------------------+ +-------------------------------+
+       │                                    |     📈 YAHOO FINANCE API        | |      🌐 GOOGLE FINANCE        |
+       │                                    |   (via yahoo-finance2 library)  | |   (via HTML Page Scraping)    |
+       │                                    |   Fetches:                      | |   Scrapes:                    |
+       │                                    |   - Current Market Price (CMP)  | |   - P/E Ratio                 |
+       │                                    |     (e.g., HDFCBANK.NS)         | |   - Latest Earnings (EPS)     |
+       │                                    +---------------------------------+ +-------------------------------+
+       │                                                     │                                   │
+       │                                                     └─────────────────┬─────────────────┘
+       │                                                                       │ Updates Cache
+       │◄──────────────────────────────────────────────────────────────────────┘
+       ▼
 +-------------------------------------------------------------------+
 |               🧮 FINANCIAL CALCULATION ENGINE                     |
 |                   File: lib/calculations.ts                       |
