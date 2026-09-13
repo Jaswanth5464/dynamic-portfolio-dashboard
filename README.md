@@ -165,6 +165,33 @@ All numbers are formatted cleanly into Indian Rupees (`₹ 1,50,000.00`) with st
 
 ---
 
+## Key Challenges Faced & Solutions
+
+### 1. Market Closure on Weekends & After-Hours (Prices Didn't Change)
+* **Challenge:** Outside trading hours (weekends or after 3:30 PM IST), prices and gain/loss stayed constant, making it look like the 15-second timer was not updating.
+* **Solution:** Indian markets (NSE/BSE) only trade Monday to Friday from 9:15 AM to 3:30 PM IST. We added a **Live Market Status Indicator** on the header showing *"Market Closed (Weekend / After-Hours)"* alongside a live 15s countdown ticker and a "Last Updated" timestamp so users know polling is active.
+
+### 2. Public API Rate Limiting (Risk of IP Blocks)
+* **Challenge:** Rapidly querying Yahoo Finance and Google Finance for 26 stocks risks IP bans and rate-limiting.
+* **Solution:** Implemented **differential server-side in-memory caching**:
+  * **10-second cache** for CMP (allows fresh data every 15s, but shields against rapid page reloads).
+  * **5-minute cache** for P/E & EPS (fundamentals only update quarterly).
+  * Cache hits return in **< 5ms** directly from server RAM.
+
+### 3. Slow Response Times Across 26 Stocks (Network Lag)
+* **Challenge:** Fetching 26 stocks sequentially one-by-one took 8 to 12 seconds, causing the 15-second polling interval to lag.
+* **Solution:** Used JavaScript's **`Promise.allSettled()`** to dispatch all 26 stock requests concurrently in parallel batches. This dropped total response latency to **~1.2 seconds**, and ensured that if one stock API call fails, the remaining 25 still load without crashing.
+
+### 4. Fragility of Google Finance HTML Scraping
+* **Challenge:** Google Finance has no official JSON API; traditional CSS class selectors break whenever Google updates its frontend code.
+* **Solution:** Used **regular expressions targeting semantic labels** (like `"P/E ratio"` and `"Earnings per share"`) followed by numbers, combined with automated numeric sanitization and default fallback values (`null` rendered as `—`).
+
+### 5. Client-Side Memory Leaks & Timer Overlaps
+* **Challenge:** In React, standard `setInterval` timers can stack and duplicate during re-renders, causing memory leaks and duplicate API calls.
+* **Solution:** Wrapped the polling cycle in a `useEffect` hook with a **strict `clearInterval` cleanup function**, and separated the 1-second UI countdown display from the 15-second data fetcher.
+
+---
+
 ## 🚀 How to Run the Application Locally
 
 ### Prerequisites
