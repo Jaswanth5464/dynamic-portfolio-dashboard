@@ -1,61 +1,104 @@
-# Dynamic Stock Portfolio Dashboard
+# 📊 Dynamic Stock Portfolio Dashboard
 
 A full-stack Indian stock portfolio web application built with **Next.js (React)**, **TypeScript**, **Tailwind CSS**, and **Node.js** for the Octa Byte AI case study.
 
 ---
 
-## System Architecture Diagram
+## 📱 System Architecture Diagram
 
-```text
-       +-------------------------------------------------------+
-       |              Client Browser (Dashboard)               |
-       |  • Auto-polls every 15s + Live 1s Countdown Timer     |
-       +-------------------------------------------------------+
+```
++-------------------------------------------------------------------+
+|                        📱 USER'S BROWSER                          |
+|  - Displays Portfolio Table with 11 columns                       |
+|  - Groups stocks by Sector (Financials, Tech, Consumer, etc.)     |
+|  - Color codes Gain (Green) / Loss (Red)                          |
+|  - Automatic 15-second countdown timer + Manual Refresh button    |
++-------------------------------------------------------------------+
+                                  │
+                                  │ Every 15 seconds (or on click)
+                                  │ Calls GET /api/portfolio
+                                  ▼
++-------------------------------------------------------------------+
+|                 ⚙️ NEXT.JS BACKEND (Node.js API)                  |
+|                 File: app/api/portfolio/route.ts                  |
+|                                                                   |
+|   1. Reads static holdings from: data/portfolio.json              |
+|   2. Coordinates parallel fetching and data aggregation           |
++-------------------------------------------------------------------+
+                                  │
+                                  ▼
++-------------------------------------------------------------------+
+|             📦 IN-MEMORY SERVER CACHE (Node.js RAM)               |
+|                                                                   |
+|   • CMP Cache: 10-second TTL (Yahoo Finance prices)               |
+|   • Fundamentals Cache: 5-minute TTL (P/E Ratio & EPS)            |
++-------------------------------------------------------------------+
+       │                                                     │
+       │ IF NOT EXPIRED (Cache Hit)                          │ IF EXPIRED (Cache Miss)
+       │ Reuses prices from memory RAM (<1ms)                │ Calls external sources
+       │                                                     ▼
+       │                                    +---------------------------------+ +-------------------------------+
+       │                                    |     📈 YAHOO FINANCE API        | |      🌐 GOOGLE FINANCE        |
+       │                                    |   (via yahoo-finance2 library)  | |   (via HTML Page Scraping)    |
+       │                                    |   Fetches:                      | |   Scrapes:                    |
+       │                                    |   - Current Market Price (CMP)  | |   - P/E Ratio                 |
+       │                                    |     (e.g., HDFCBANK.NS)         | |   - Latest Earnings (EPS)     |
+       │                                    +---------------------------------+ +-------------------------------+
+       │                                                     │                                   │
+       │                                                     └─────────────────┬─────────────────┘
+       │                                                                       │ Updates Cache
+       │◄──────────────────────────────────────────────────────────────────────┘
+       ▼
++-------------------------------------------------------------------+
+|               🧮 FINANCIAL CALCULATION ENGINE                     |
+|                   File: lib/calculations.ts                       |
+|                                                                   |
+|   • Investment    = Purchase Price × Quantity                     |
+|   • Present Value = CMP × Quantity                                |
+|   • Gain / Loss   = Present Value - Investment                    |
+|   • Portfolio %   = (Stock Investment ÷ Total Investment) × 100   |
+|   • Sector Totals = Sum of (Investment, Value, Gain/Loss)         |
++-------------------------------------------------------------------+
                                    │
-                                   │ HTTP GET /api/portfolio
+                                   │ Returns JSON payload
                                    ▼
-       +-------------------------------------------------------+
-       |            Next.js Server: /api/portfolio             |
-       |  • Loads static holdings from data/portfolio.json     |
-       +-------------------------------------------------------+
-                                   │
-                                   ▼
-                       Check In-Memory Cache?
-                                   │
-                 ┌─────────────────┴─────────────────┐
-                 │                                   │
-         [ CACHE HIT: Fresh ]               [ CACHE MISS: Expired ]
-                 │                                   │
-                 │                          Fetch External APIs:
-                 │                          • Yahoo Finance (CMP)
-                 │                          • Google Finance (P/E & EPS)
-                 │                                   │
-                 │                                   ▼
-                 │                         Update In-Memory Cache
-                 │                         (Save with 10s / 5m TTL)
-                 │                                   │
-                 └─────────────────┬─────────────────┘
-                                   │
-                                   ▼
-       +-------------------------------------------------------+
-       |        Calculation Engine (lib/calculations.ts)       |
-       |  • Investment    = Purchase Price × Quantity          |
-       |  • Present Value = CMP × Quantity                     |
-       |  • Gain / Loss   = Present Value - Investment         |
-       |  • Gain / Loss % = (Gain / Loss ÷ Investment) × 100   |
-       |  • Portfolio %   = (Investment ÷ Total Inv.) × 100    |
-       +-------------------------------------------------------+
-                                   │
-                                   │ JSON Response (26 Stocks + Totals)
-                                   ▼
-       +-------------------------------------------------------+
-       |           Client Dashboard UI Updates Table           |
-       +-------------------------------------------------------+
+                 📱 BROWSER SCREEN RE-RENDERS LIVE
 ```
 
 ---
 
-## Case Study Requirements & Our Strategies
+## 📸 Application Screenshots
+
+### 1. Portfolio Overview & Top Summary Cards
+> Displays total portfolio investment, current value, overall gain/loss, and live market indicator.
+
+![Portfolio Overview](public/screenshots/image-6.png)
+
+![Summary Cards](public/screenshots/image.png)
+
+### 2. Sector Grouping & Tabular Stock Breakdown
+> Stocks grouped by sector with all 11 required columns (Buy Price, Qty, Investment, Weight %, CMP, Present Value, Gain/Loss, P/E, EPS) and sector-level summary totals.
+
+#### Financial Sector:
+![Financial Sector](public/screenshots/image-1.png)
+
+#### Tech Sector:
+![Tech Sector](public/screenshots/image-2.png)
+
+#### Consumer & Power Sectors:
+![Consumer & Power Sectors](public/screenshots/image-3.png)
+
+#### Pipe & Other Sectors:
+![Pipe & Others Sectors](public/screenshots/image-4.png)
+
+### 3. Dynamic 15-Second Auto-Refresh & Status Indicator
+> Demonstrates the live 15-second countdown timer, market status, and manual refresh button.
+
+![Dynamic Refresh Header](public/screenshots/image-5.png)
+
+---
+
+## 🎯 Case Study Requirements & Our Strategies
 
 ### 1. Data Sources Strategy
 * **Current Market Price (CMP):**
@@ -75,7 +118,7 @@ A full-stack Indian stock portfolio web application built with **Next.js (React)
   - In `app/page.tsx`, we use a React `useEffect` hook with `setInterval(..., 15000)`.
   - Every 15 seconds, the browser requests fresh data from `GET /api/portfolio`.
   - The UI provides **visible countdown feedback** (`Next update in 14s... 13s...`), an animated **"Live / Updating"** badge, and a **"Last updated: HH:MM:SS"** timestamp.
-  - A manual **Refresh** button allows instant on-demand updates.
+  - A manual **`🔄 Refresh`** button allows instant on-demand updates.
   - When the component unmounts, `clearInterval` is called to prevent memory leaks.
 
 ---
