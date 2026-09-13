@@ -95,8 +95,8 @@ export default function HomePage() {
           <span className={`w-2 h-2 rounded-full ${marketOpen ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`} />
           <span>
             {marketOpen
-              ? "🟢 Indian Markets (NSE/BSE) are OPEN — live prices updating."
-              : "🔴 Indian Markets (NSE/BSE) are CLOSED (Weekend / After-Hours) — Yahoo Finance returns latest closing prices."}
+              ? "Indian Markets (NSE/BSE) are OPEN — live prices updating."
+              : "Indian Markets (NSE/BSE) are CLOSED (Weekend / After-Hours) — Yahoo Finance returns latest closing prices."}
           </span>
         </div>
       </div>
@@ -104,13 +104,20 @@ export default function HomePage() {
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h1 className="text-xl font-bold text-gray-900">
-              📊 Portfolio Dashboard
-            </h1>
-            <p className="text-xs text-gray-500 mt-0.5">
-              Live updates every {REFRESH_INTERVAL_SECONDS}s from Yahoo &amp; Google Finance
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-slate-100 text-slate-700 rounded-lg border border-slate-200">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">
+                Portfolio Dashboard
+              </h1>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Live updates every {REFRESH_INTERVAL_SECONDS}s from Yahoo &amp; Google Finance
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="text-right">
@@ -141,11 +148,23 @@ export default function HomePage() {
             <button
               onClick={() => fetchPortfolio()}
               disabled={isRefreshing || loading}
-              className="px-3 py-1.5 text-xs font-medium bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md border border-gray-300 transition-colors flex items-center gap-1.5 disabled:opacity-50"
+              className="px-3 py-1.5 text-xs font-medium bg-white hover:bg-gray-50 text-gray-700 rounded-md border border-gray-300 shadow-sm transition-colors flex items-center gap-1.5 disabled:opacity-50"
               title="Refresh prices now"
             >
-              <span className={isRefreshing ? "animate-spin" : ""}>🔄</span>
-              {isRefreshing ? "Refreshing..." : "Refresh"}
+              <svg
+                className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin text-blue-600" : "text-gray-500"}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+              <span>{isRefreshing ? "Refreshing..." : "Refresh"}</span>
             </button>
           </div>
         </div>
@@ -168,7 +187,7 @@ export default function HomePage() {
         {!loading && error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
             <p className="text-red-600 font-medium text-lg">
-              ⚠️ Failed to load portfolio data
+              Failed to load portfolio data
             </p>
             <p className="text-red-500 text-sm mt-2">{error}</p>
             <button
@@ -191,7 +210,7 @@ export default function HomePage() {
 
             {/* Disclaimer */}
             <p className="text-xs text-gray-400 mb-6 italic">
-              ⚠️ Market data is fetched from unofficial sources (Yahoo Finance,
+              Note: Market data is fetched from unofficial sources (Yahoo Finance,
               Google Finance). Prices may be delayed and are for informational
               purposes only. Not financial advice.
             </p>

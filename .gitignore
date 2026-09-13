@@ -41,4 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 # technical document (excluded from public repo)
-TECHNICAL_DOCUMENT.md
+*TECHNICAL_DOCUMENT*
+~$*
